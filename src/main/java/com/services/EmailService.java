@@ -1,4 +1,4 @@
-package com.manager.smartcontactmanager.services;
+package com.services;
 import java.io.File;
 import java.io.InputStream;
 
@@ -15,5 +15,5 @@ public interface EmailService {
     // send email to multiple users with attachment
     void sendEmailWithFile(String to, String subject, String body, File attachmentPath);
 
-    void sendEmailWithFile(String to, String subject, String message, InputStream is);
+//    void sendEmailWithFile(String to, String subject, String message, InputStream is);
 }

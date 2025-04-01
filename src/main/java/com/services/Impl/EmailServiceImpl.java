@@ -1,6 +1,7 @@
 package com.services.Impl;
 
-import com.manager.smartcontactmanager.services.EmailService;
+//import com.services;
+import com.services.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.slf4j.Logger;
@@ -19,8 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 @Service
-@SpringBootApplication
-public class EmailServiceImpl implements EmailService{
+public class EmailServiceImpl implements EmailService {
     private JavaMailSender mailSender;
     private Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
 
@@ -92,33 +92,33 @@ public class EmailServiceImpl implements EmailService{
     }
 
 
-    @Override
-    public void sendEmailWithFile(String to, String subject, String body, InputStream is) {
-        MimeMessage mimeMessage = mailSender.createMimeMessage();
-
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-            helper.setTo(to);
-            helper.setSubject(subject);
-            helper.setFrom("singhvigyat0407@gmail.com");
-            helper.setText(body);
-
-            // file will be stored in this location once it is copied
-            File file=new File("src/main/resources/email/test.png");
-            Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            FileSystemResource fileSystemResource = new FileSystemResource(file);
-            helper.addAttachment(fileSystemResource.getFilename(), file );
-
-            mailSender.send(mimeMessage);
-            logger.info("Email sent Success" );
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
+//    @Override
+//    public void sendEmailWithFile(String to, String subject, String body, InputStream is) {
+//        MimeMessage mimeMessage = mailSender.createMimeMessage();
+//
+//        try {
+//            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+//            helper.setTo(to);
+//            helper.setSubject(subject);
+//            helper.setFrom("singhvigyat0407@gmail.com");
+//            helper.setText(body);
+//
+//            // file will be stored in this location once it is copied
+//            File file=new File("src/main/resources/email/test.png");
+//            Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+//            FileSystemResource fileSystemResource = new FileSystemResource(file);
+//            helper.addAttachment(fileSystemResource.getFilename(), file );
+//
+//            mailSender.send(mimeMessage);
+//            logger.info("Email sent Success" );
+//        } catch (MessagingException e) {
+//            throw new RuntimeException(e);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//
+//    }
 
 
 }
